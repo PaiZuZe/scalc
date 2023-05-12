@@ -7,7 +7,9 @@
     <body>
         <form action="#" th:action="@{/calculator/add}" th:object="${equation}" method="get">
             <p>Campo A: <input type="text" th:field="*{leftOperand}" /></p>
+            <p th:if="${#fields.hasErrors('leftOperand')}" class="error">Formato de operando inválido</p>
             <p>Campo B: <input type="text" th:field="*{rightOperand}" /></p>
+            <p th:if="${#fields.hasErrors('rightOperand')}" class="error">Formato de operando inválido</p>
             <p th:if="${result != null}" th:text="'O resultado é: ' + ${result} + '.'"></p>
             <p>
                 <input type="submit" value="Somar">
@@ -16,3 +18,9 @@
         </form>
     </body>
 </html>
+
+<style>
+    .error {
+        color: red;
+    }
+</style>
